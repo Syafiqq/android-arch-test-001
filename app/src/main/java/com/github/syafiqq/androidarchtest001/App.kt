@@ -24,9 +24,8 @@ class App : Application() {
             .builder()
             .appModule(AppModule(this))
             .titleModule(TitleModule())
-            .build().apply {
-                inject(this@App)
-            }
+            .build()
+        component.inject(this)
     }
 
     private class CrashReportingTree : Timber.Tree() {
