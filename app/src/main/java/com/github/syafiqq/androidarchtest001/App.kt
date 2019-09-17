@@ -2,9 +2,16 @@ package com.github.syafiqq.androidarchtest001
 
 import android.app.Application
 import android.util.Log
+import com.github.syafiqq.androidarchtest001.di.component.AppComponent
+import com.github.syafiqq.androidarchtest001.di.component.DaggerAppComponent
+import com.github.syafiqq.androidarchtest001.di.module.AppModule
+import com.github.syafiqq.androidarchtest001.di.module.TitleModule
 import timber.log.Timber
 
 class App : Application() {
+
+    lateinit var component: AppComponent
+        private set
 
     override fun onCreate() {
         super.onCreate()
@@ -13,6 +20,13 @@ class App : Application() {
         } else {
             Timber.plant(CrashReportingTree())
         }
+        component = DaggerAppComponent
+            .builder()
+            .appModule(AppModule(this))
+            .titleModule(TitleModule())
+            .build().apply {
+                inject(this@App)
+            }
     }
 
     private class CrashReportingTree : Timber.Tree() {
