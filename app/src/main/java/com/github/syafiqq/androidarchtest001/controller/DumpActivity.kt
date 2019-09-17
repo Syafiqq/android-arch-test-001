@@ -1,25 +1,35 @@
 package com.github.syafiqq.androidarchtest001.controller
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.github.syafiqq.androidarchtest001.R
 import com.github.syafiqq.androidarchtest001.dump.contract.TitleContract
+import io.reactivex.subjects.PublishSubject
 
 import kotlinx.android.synthetic.main.activity_dump.*
 import kotlinx.android.synthetic.main.content_dump.*
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicInteger
 
 class DumpActivity : AppCompatActivity() {
     var titleFactory:TitleContract? = null
 
+    @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dump)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener {
-            textView.text = titleFactory?.title ?: "default"
-        }
+        val c = AtomicInteger(0)
+        val s = PublishSubject.create<View>()
+        s.debounce(500, TimeUnit.MILLISECONDS)
+            .subscribe {
+                textView.text = titleFactory?.title ?: "default " + c.getAndIncrement()
+            }
+
+        fab.setOnClickListener(s::onNext)
     }
 
 }
