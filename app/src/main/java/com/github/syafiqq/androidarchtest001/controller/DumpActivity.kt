@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 class DumpActivity : AppCompatActivity() {
     @Inject
-    var titleFactory:TitleContract? = null
+    lateinit var titleFactory:TitleContract
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
