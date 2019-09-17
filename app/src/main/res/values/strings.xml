@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AndroidArchTest001</string>
+    <string name="title_activity_dump">DumpActivity</string>
 </resources>
