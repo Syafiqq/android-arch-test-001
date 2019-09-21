@@ -1,25 +1,16 @@
 package com.github.syafiqq.androidarchtest001
 
-import android.app.Application
 import android.util.Log
 import com.github.syafiqq.androidarchtest001.di.component.DaggerAppComponent
 import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
+import dagger.android.support.DaggerApplication
 import timber.log.Timber
-import javax.inject.Inject
 
 
-class App : Application(), HasAndroidInjector {
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
+class App : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        DaggerAppComponent
-            .factory()
-            .create(this)
-            .inject(this)
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         } else {
@@ -27,8 +18,10 @@ class App : Application(), HasAndroidInjector {
         }
     }
 
-    override fun androidInjector(): AndroidInjector<Any> {
-        return dispatchingAndroidInjector
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerAppComponent
+            .factory()
+            .create(this)
     }
 
     private class CrashReportingTree : Timber.Tree() {
