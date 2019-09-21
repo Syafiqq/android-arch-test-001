@@ -3,25 +3,18 @@ package com.github.syafiqq.androidarchtest001.di.component
 import com.github.syafiqq.androidarchtest001.App
 import com.github.syafiqq.androidarchtest001.di.module.ActivityBuilderModule
 import com.github.syafiqq.androidarchtest001.di.module.AppModule
-import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjectionModule
+import dagger.android.AndroidInjector
+import dagger.android.support.AndroidSupportInjectionModule
 
 @Component(
     modules = [
-        AndroidInjectionModule::class,
+        AndroidSupportInjectionModule::class,
         AppModule::class,
         ActivityBuilderModule::class
     ]
 )
-interface AppComponent {
-    @Component.Builder
-    interface Builder {
-        @BindsInstance
-        fun application(app: App): Builder
-
-        fun build(): AppComponent
-    }
-
-    fun inject(app: App)
+interface AppComponent : AndroidInjector<App> {
+    @Component.Factory
+    interface Factory : AndroidInjector.Factory<App>
 }

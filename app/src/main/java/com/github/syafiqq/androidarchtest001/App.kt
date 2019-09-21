@@ -17,11 +17,9 @@ class App : Application(), HasAndroidInjector {
     override fun onCreate() {
         super.onCreate()
         DaggerAppComponent
-            .builder()
-            .application(this)
-            .build().apply {
-                inject(this@App)
-            }
+            .factory()
+            .create(this)
+            .inject(this)
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         } else {
