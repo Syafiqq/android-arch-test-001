@@ -6,7 +6,7 @@ import dagger.android.ContributesAndroidInjector
 
 
 @Module
-internal abstract class DumpActivityModule {
+internal abstract class ActivityBuilderModule {
     @ContributesAndroidInjector(modules = [TitleModule::class])
     internal abstract fun contributeDumpAndroidInjector(): DumpActivity
 }
