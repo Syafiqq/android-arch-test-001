@@ -6,6 +6,6 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 internal abstract class DetailActivityBuilderModule {
-    @ContributesAndroidInjector(modules = [TitleModule::class])
+    @ContributesAndroidInjector(modules = [TitleModule2::class])
     internal abstract fun contributeDetailFragmentAndroidInjector(): DetailActivityFragment
 }
