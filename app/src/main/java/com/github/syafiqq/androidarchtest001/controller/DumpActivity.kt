@@ -1,6 +1,7 @@
 package com.github.syafiqq.androidarchtest001.controller
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -32,6 +33,9 @@ class DumpActivity : AppCompatActivity() {
             }
 
         fab.setOnClickListener(s::onNext)
+        button.setOnClickListener {
+            startActivity(Intent(this, DetailActivity::class.java))
+        }
     }
 
 }
