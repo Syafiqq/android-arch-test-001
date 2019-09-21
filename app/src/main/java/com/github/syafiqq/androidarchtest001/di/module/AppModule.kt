@@ -5,26 +5,25 @@ import android.content.Context
 import com.github.syafiqq.androidarchtest001.App
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
-class AppModule(private val app: App) {
+class AppModule {
     @Provides
-    fun provideApp(): App {
+    @Singleton
+    fun provideApplication(app: App): Application {
         return app
     }
 
     @Provides
-    fun provideApplication(): Application {
-        return app
-    }
-
-    @Provides
-    fun provideAppContext(): Context {
+    @Singleton
+    fun provideAppContext(app: App): Context {
         return app.applicationContext
     }
 
     @Provides
-    fun provideBaseContext(): Context {
+    @Singleton
+    fun provideBaseContext(app: App): Context {
         return app.baseContext
     }
 }
