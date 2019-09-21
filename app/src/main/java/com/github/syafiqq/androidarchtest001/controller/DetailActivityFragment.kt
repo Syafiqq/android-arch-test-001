@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.github.syafiqq.androidarchtest001.R
+import com.github.syafiqq.androidarchtest001.dump.contract.TitleContract1
 import com.github.syafiqq.androidarchtest001.dump.contract.TitleContract2
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.subjects.PublishSubject
@@ -21,6 +22,8 @@ import javax.inject.Inject
 class DetailActivityFragment : Fragment() {
     @Inject
     lateinit var titleFactory: TitleContract2
+    @Inject
+    lateinit var titleFactory1: TitleContract1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,12 +36,18 @@ class DetailActivityFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val s = PublishSubject.create<View>()
+        val s1 = PublishSubject.create<View>()
         s.throttleFirst(500, TimeUnit.MILLISECONDS)
             .subscribe {
                 textView2.text = titleFactory.title
             }
+        s1.throttleFirst(500, TimeUnit.MILLISECONDS)
+            .subscribe {
+                textView2.text = titleFactory1.title
+            }
 
         button2.setOnClickListener(s::onNext)
+        button3.setOnClickListener(s1::onNext)
     }
 
     override fun onAttach(context: Context) {
