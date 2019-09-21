@@ -11,6 +11,6 @@ internal abstract class ActivityBuilderModule {
     @ContributesAndroidInjector(modules = [TitleModule::class])
     internal abstract fun contributeDumpAndroidInjector(): DumpActivity
 
-    @ContributesAndroidInjector(modules = [TitleModule1::class, DetailActivityBuilderModule::class])
+    @ContributesAndroidInjector(modules = [TitleModule1::class, DetailActivityFragmentBuilderModule::class])
     internal abstract fun contributeDetailAndroidInjector(): DetailActivity
 }
