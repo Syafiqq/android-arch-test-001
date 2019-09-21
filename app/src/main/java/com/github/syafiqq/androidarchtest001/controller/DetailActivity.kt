@@ -4,27 +4,20 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.github.syafiqq.androidarchtest001.R
 import com.github.syafiqq.androidarchtest001.dump.contract.TitleContract1
-import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
+import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_detail.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class DetailActivity : AppCompatActivity(), HasAndroidInjector {
+class DetailActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var titleFactory: TitleContract1
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         setSupportActionBar(toolbar)
@@ -37,9 +30,5 @@ class DetailActivity : AppCompatActivity(), HasAndroidInjector {
 
         fab.setOnClickListener(s::onNext)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
-    override fun androidInjector(): AndroidInjector<Any> {
-        return dispatchingAndroidInjector
     }
 }
