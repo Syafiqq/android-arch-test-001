@@ -25,7 +25,7 @@ class DetailActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val s = PublishSubject.create<View>()
-        s.throttleFirst(500, TimeUnit.MILLISECONDS)
+        s.throttleFirst(1000, TimeUnit.MILLISECONDS)
             .subscribe {
                 Toast.makeText(this, titleFactory.title, Toast.LENGTH_SHORT).show()
             }
