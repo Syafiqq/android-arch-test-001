@@ -30,7 +30,7 @@ class DumpActivity : AppCompatActivity() {
         val s = PublishSubject.create<View>()
         s.throttleFirst(500, TimeUnit.MILLISECONDS)
             .subscribe {
-                textView.text = titleFactory?.title ?: "default " + c.getAndIncrement()
+                textView.text = titleFactory.title
             }
 
         fab.setOnClickListener(s::onNext)
