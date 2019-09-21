@@ -12,7 +12,6 @@ import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_dump.*
 import kotlinx.android.synthetic.main.content_dump.*
 import java.util.concurrent.TimeUnit
-import java.util.concurrent.atomic.AtomicInteger
 import javax.inject.Inject
 
 class DumpActivity : AppCompatActivity() {
@@ -26,7 +25,6 @@ class DumpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dump)
         setSupportActionBar(toolbar)
 
-        val c = AtomicInteger(0)
         val s = PublishSubject.create<View>()
         s.throttleFirst(500, TimeUnit.MILLISECONDS)
             .subscribe {
