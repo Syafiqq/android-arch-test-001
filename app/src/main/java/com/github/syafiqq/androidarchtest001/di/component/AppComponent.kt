@@ -2,6 +2,7 @@ package com.github.syafiqq.androidarchtest001.di.component
 
 import com.github.syafiqq.androidarchtest001.App
 import com.github.syafiqq.androidarchtest001.di.module.DumpActivityModule
+import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 
@@ -12,5 +13,13 @@ import dagger.android.AndroidInjectionModule
     ]
 )
 interface AppComponent {
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun application(app: App): Builder
+
+        fun build(): AppComponent
+    }
+
     fun inject(app: App)
 }
