@@ -13,9 +13,11 @@ import kotlinx.android.synthetic.main.activity_dump.*
 import kotlinx.android.synthetic.main.content_dump.*
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
+import javax.inject.Inject
 
 class DumpActivity : AppCompatActivity() {
-    var titleFactory:TitleContract? = null
+    @Inject
+    lateinit var titleFactory:TitleContract
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
