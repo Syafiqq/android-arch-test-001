@@ -28,7 +28,7 @@ class DumpActivity : AppCompatActivity() {
 
         val c = AtomicInteger(0)
         val s = PublishSubject.create<View>()
-        s.debounce(500, TimeUnit.MILLISECONDS)
+        s.throttleFirst(500, TimeUnit.MILLISECONDS)
             .subscribe {
                 textView.text = titleFactory?.title ?: "default " + c.getAndIncrement()
             }
