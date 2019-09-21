@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.github.syafiqq.androidarchtest001.R
 import com.github.syafiqq.androidarchtest001.dump.contract.TitleContract
+import dagger.android.AndroidInjection
 import io.reactivex.subjects.PublishSubject
 
 import kotlinx.android.synthetic.main.activity_dump.*
@@ -18,6 +19,7 @@ class DumpActivity : AppCompatActivity() {
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dump)
         setSupportActionBar(toolbar)
