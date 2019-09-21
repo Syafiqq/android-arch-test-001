@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".controller.DetailActivity"
+            android:label="@string/title_activity_detail"
+            android:parentActivityName=".controller.DumpActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.github.syafiqq.androidarchtest001.controller.DumpActivity" />
+        </activity>
+        <activity
             android:name=".controller.DumpActivity"
             android:label="@string/title_activity_dump"
             android:theme="@style/AppTheme.NoActionBar">
